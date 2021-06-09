@@ -37,7 +37,6 @@ class ResultConverter
             $dataValues['PAC que Certificó'],
             $dataValues['Total del CFDI Retención'],
             $dataValues['Estado CFDI Retención'],
-            $dataValues,
         );
     }
 

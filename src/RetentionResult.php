@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace PhpCfdi\SatEstadoRetenciones;
 
-class RetentionResult
+use JsonSerializable;
+
+class RetentionResult implements JsonSerializable
 {
     private StatusQuery $query;
 
     private StatusDocument $document;
 
     private string $issuerRfc;
-
-    /** @var array<string, string> */
-    private array $rawValues;
 
     private string $issuerName;
 
@@ -45,8 +44,7 @@ class RetentionResult
         string $certification,
         string $pacRfc,
         string $total,
-        string $state,
-        array $rawValues
+        string $state
     ) {
         $this->query = $query;
         $this->document = $document;
@@ -60,7 +58,6 @@ class RetentionResult
         $this->pacRfc = $pacRfc;
         $this->total = $total;
         $this->state = $state;
-        $this->rawValues = $rawValues;
     }
 
     public function getQuery(): StatusQuery
@@ -123,9 +120,8 @@ class RetentionResult
         return $this->state;
     }
 
-    /** @return array<string, string> */
-    public function getRawValues(): array
+    public function jsonSerialize(): array
     {
-        return $this->rawValues;
+        return get_object_vars($this);
     }
 }

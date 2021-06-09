@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PhpCfdi\SatEstadoRetenciones;
 
 use Eclipxe\Enum\Enum;
+use JsonSerializable;
 
 /**
  * @method static self active()
@@ -14,6 +15,11 @@ use Eclipxe\Enum\Enum;
  * @method bool isCancelled()
  * @method bool isNotFound()
  */
-class StatusDocument extends Enum
+class StatusDocument extends Enum implements JsonSerializable
 {
+    public function jsonSerialize(): string
+    {
+        return $this->value();
+    }
+
 }
