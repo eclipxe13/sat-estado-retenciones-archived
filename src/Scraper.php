@@ -23,8 +23,6 @@ class Scraper
         return $this->httpClient;
     }
 
-
-
     public function obtainStatus(RetentionQuery $query): RetentionResult
     {
         $url = $this->makeUrl($query);

@@ -12,6 +12,30 @@ use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
 
 final class ScraperTest extends TestCase
 {
+    public function testObtainStatusUsingFakeHttpClient(): void
+    {
+        $fakeHttpClient = new class() implements HttpClientInterface {
+            public function getContents(string $url): string
+            {
+                return TestCase::fileContents('result-html.html');
+            }
+        };
+
+        $query = new RetentionQuery(
+            '48C4CE37-E218-4AAE-97BE-20634A36C628', // UUID
+            'DCM991109KR2', // RFC Emisor
+            'SAZD861013FU2', // RFC Receptor
+        );
+
+        $scraper = new Scraper($fakeHttpClient);
+        $result = $scraper->obtainStatus($query);
+
+        $this->assertTrue($result->getDocument()->isActive());
+        $this->assertSame($query->getIssuerRfc(), $result->getIssuerRfc());
+        $this->assertSame($query->getReceiverRfc(), $result->getReceiverRfc());
+        $this->assertSame($query->getUuid(), $result->getUuid());
+    }
+
     public function testPropertyDefaultHttpClientInterface(): void
     {
         $scraper = new Scraper();
