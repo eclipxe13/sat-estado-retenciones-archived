@@ -1,6 +1,5 @@
 {
-    "query": "found",
-    "document": "active",
+    "statusDocument": "active",
     "issuerRfc": "DCM991109KR2",
     "issuerName": "DEREMATE.COM DE MEXICO S DE RL DE CV",
     "receiverRfc": "SAZD861013FU2",
@@ -11,5 +10,6 @@
     "pacRfc": "TLE011122SC2",
     "total": "$431.03",
     "state": "Vigente",
-    "efos": "200"
+    "efos": "200",
+    "statusEfos": "excluded"
 }

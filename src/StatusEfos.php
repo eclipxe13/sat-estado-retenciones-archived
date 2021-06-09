@@ -8,15 +8,15 @@ use Eclipxe\Enum\Enum;
 use JsonSerializable;
 
 /**
- * @method static self active()
- * @method static self cancelled()
+ * @method static self included()
+ * @method static self excluded()
  * @method static self unknown()
  *
- * @method bool isActive()
- * @method bool isCancelled()
+ * @method bool isIncluded()
+ * @method bool isExcluded()
  * @method bool isUnknown()
  */
-class StatusDocument extends Enum implements JsonSerializable
+final class StatusEfos extends Enum implements JsonSerializable
 {
     public function jsonSerialize(): string
     {

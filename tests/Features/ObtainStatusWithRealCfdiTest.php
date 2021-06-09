@@ -21,7 +21,7 @@ class ObtainStatusWithRealCfdiTest extends TestCase
         $scraper = new Scraper();
         $result = $scraper->obtainStatus($query);
 
-        $this->assertTrue($result->getDocument()->isActive());
+        $this->assertTrue($result->getStatusDocument()->isActive());
         $this->assertSame($query->getIssuerRfc(), $result->getIssuerRfc());
         $this->assertSame($query->getReceiverRfc(), $result->getReceiverRfc());
         $this->assertSame($query->getUuid(), $result->getUuid());

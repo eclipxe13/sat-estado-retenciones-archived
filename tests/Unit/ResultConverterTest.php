@@ -51,6 +51,6 @@ final class ResultConverterTest extends TestCase
     public function testCreateStatusDocumentFromValueNotFound(string $value): void
     {
         $converter = new ResultConverter();
-        $this->assertTrue($converter->createStatusDocumentFromValue($value)->isNotFound());
+        $this->assertTrue($converter->createStatusDocumentFromValue($value)->isUnknown());
     }
 }

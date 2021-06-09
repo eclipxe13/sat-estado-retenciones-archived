@@ -23,12 +23,9 @@ class ResultConverter
         );
 
         $dataValues = array_combine($labels, $values);
-
-        $efosValue = $crawler->filter('#efosEstatus')->attr('value');
+        $dataValues['EFOS'] = $crawler->filter('#efosEstatus')->attr('value');
 
         return new RetentionResult(
-            StatusQuery::found(),
-            $this->createStatusDocumentFromValue($dataValues['Estado CFDI Retención']),
             $dataValues['RFC del Emisor'],
             $dataValues['Nombre o Razón Social del Emisor'],
             $dataValues['RFC del Receptor'],
@@ -39,7 +36,7 @@ class ResultConverter
             $dataValues['PAC que Certificó'],
             $dataValues['Total del CFDI Retención'],
             $dataValues['Estado CFDI Retención'],
-            $efosValue,
+            $dataValues['EFOS'],
         );
     }
 
@@ -51,6 +48,6 @@ class ResultConverter
         if ('Cancelado' === $value) {
             return StatusDocument::cancelled();
         }
-        return StatusDocument::notFound();
+        return StatusDocument::unknown();
     }
 }

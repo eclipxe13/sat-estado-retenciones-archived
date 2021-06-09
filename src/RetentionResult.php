@@ -8,9 +8,7 @@ use JsonSerializable;
 
 class RetentionResult implements JsonSerializable
 {
-    private StatusQuery $query;
-
-    private StatusDocument $document;
+    private StatusDocument $statusDocument;
 
     private string $issuerRfc;
 
@@ -34,9 +32,9 @@ class RetentionResult implements JsonSerializable
 
     private string $efos;
 
+    private StatusEfos $statusEfos;
+
     public function __construct(
-        StatusQuery $query,
-        StatusDocument $document,
         string $issuerRfc,
         string $issuerName,
         string $receiverRfc,
@@ -49,8 +47,8 @@ class RetentionResult implements JsonSerializable
         string $state,
         string $efos
     ) {
-        $this->query = $query;
-        $this->document = $document;
+        $this->statusDocument = $this->makeStatusDocument($state);
+        $this->statusEfos = $this->makeStatusEfos($efos);
         $this->issuerRfc = $issuerRfc;
         $this->issuerName = $issuerName;
         $this->receiverRfc = $receiverRfc;
@@ -64,14 +62,36 @@ class RetentionResult implements JsonSerializable
         $this->efos = $efos;
     }
 
-    public function getQuery(): StatusQuery
+    private function makeStatusDocument(string $state): StatusDocument
     {
-        return $this->query;
+        if ('Vigente' === $state) {
+            return StatusDocument::active();
+        }
+        if ('Cancelado' === $state) {
+            return StatusDocument::cancelled();
+        }
+        return StatusDocument::unknown();
     }
 
-    public function getDocument(): StatusDocument
+    private function makeStatusEfos(string $efos): StatusEfos
     {
-        return $this->document;
+        if ('100' === $efos) {
+            return StatusEfos::included();
+        }
+        if ('200' === $efos) {
+            return StatusEfos::excluded();
+        }
+        return StatusEfos::unknown();
+    }
+
+    public function getStatusDocument(): StatusDocument
+    {
+        return $this->statusDocument;
+    }
+
+    public function getStatusEfos(): StatusEfos
+    {
+        return $this->statusEfos;
     }
 
     public function getIssuerRfc(): string
