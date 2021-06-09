@@ -29,4 +29,28 @@ final class ResultConverterTest extends TestCase
         $this->assertSame('$431.03', $result->getTotal());
         $this->assertSame('Vigente', $result->getState());
     }
+
+    public function testCreateStatusDocumentFromValueActive(): void
+    {
+        $converter = new ResultConverter();
+        $this->assertTrue($converter->createStatusDocumentFromValue('Vigente')->isActive());
+    }
+
+    public function testCreateStatusDocumentFromValueCancelled(): void
+    {
+        $converter = new ResultConverter();
+        $this->assertTrue($converter->createStatusDocumentFromValue('Cancelado')->isCancelled());
+    }
+
+    /**
+     * @param string $value
+     * @testWith [""]
+     *           ["Otro valor"]
+     *           ["vigente"]
+     */
+    public function testCreateStatusDocumentFromValueNotFound(string $value): void
+    {
+        $converter = new ResultConverter();
+        $this->assertTrue($converter->createStatusDocumentFromValue($value)->isNotFound());
+    }
 }

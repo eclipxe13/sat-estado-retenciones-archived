@@ -41,7 +41,7 @@ class ResultConverter
         );
     }
 
-    private function createStatusDocumentFromValue(string $value): StatusDocument
+    public function createStatusDocumentFromValue(string $value): StatusDocument
     {
         if ('Vigente' === $value) {
             return StatusDocument::active();
