@@ -10,9 +10,9 @@ class Scraper
 
     private ResultConverter $resultConverter;
 
-    public function __construct(ResultConverter $resultConverter = null)
+    public function __construct()
     {
-        $this->resultConverter = $resultConverter ?? new ResultConverter();
+        $this->resultConverter = new ResultConverter();
     }
 
     public function obtainStatus(RetentionQuery $query): RetentionResult
