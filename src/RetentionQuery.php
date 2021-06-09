@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace PhpCfdi\SatEstadoRetenciones;
 
-class RetentionQuery
+use JsonSerializable;
+
+class RetentionQuery implements JsonSerializable
 {
     private string $uuid;
 
@@ -32,5 +34,10 @@ class RetentionQuery
     public function getReceiverRfc(): string
     {
         return $this->receiverRfc;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return get_object_vars($this);
     }
 }
