@@ -32,6 +32,8 @@ class RetentionResult implements JsonSerializable
 
     private string $state;
 
+    private string $efos;
+
     public function __construct(
         StatusQuery $query,
         StatusDocument $document,
@@ -44,7 +46,8 @@ class RetentionResult implements JsonSerializable
         string $certification,
         string $pacRfc,
         string $total,
-        string $state
+        string $state,
+        string $efos
     ) {
         $this->query = $query;
         $this->document = $document;
@@ -58,6 +61,7 @@ class RetentionResult implements JsonSerializable
         $this->pacRfc = $pacRfc;
         $this->total = $total;
         $this->state = $state;
+        $this->efos = $efos;
     }
 
     public function getQuery(): StatusQuery
@@ -118,6 +122,11 @@ class RetentionResult implements JsonSerializable
     public function getState(): string
     {
         return $this->state;
+    }
+
+    public function getEfos(): string
+    {
+        return $this->efos;
     }
 
     public function jsonSerialize(): array

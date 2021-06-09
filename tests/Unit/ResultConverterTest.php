@@ -12,7 +12,6 @@ final class ResultConverterTest extends TestCase
     public function testWellKnownConvertHtml(): void
     {
         // The file _files/result.html was obtained directly from SAT at 2021-06-08
-
         $html = $this->fileContents('result.html');
 
         $converter = new ResultConverter();
@@ -28,6 +27,7 @@ final class ResultConverterTest extends TestCase
         $this->assertSame('TLE011122SC2', $result->getPacRfc());
         $this->assertSame('$431.03', $result->getTotal());
         $this->assertSame('Vigente', $result->getState());
+        $this->assertSame('200', $result->getEfos());
     }
 
     public function testCreateStatusDocumentFromValueActive(): void

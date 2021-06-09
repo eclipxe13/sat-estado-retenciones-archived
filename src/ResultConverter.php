@@ -24,6 +24,8 @@ class ResultConverter
 
         $dataValues = array_combine($labels, $values);
 
+        $efosValue = $crawler->filter('#efosEstatus')->attr('value');
+
         return new RetentionResult(
             StatusQuery::found(),
             $this->createStatusDocumentFromValue($dataValues['Estado CFDI Retención']),
@@ -37,6 +39,7 @@ class ResultConverter
             $dataValues['PAC que Certificó'],
             $dataValues['Total del CFDI Retención'],
             $dataValues['Estado CFDI Retención'],
+            $efosValue,
         );
     }
 

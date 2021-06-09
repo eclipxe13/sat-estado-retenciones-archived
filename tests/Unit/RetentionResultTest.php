@@ -26,7 +26,8 @@ final class RetentionResultTest extends TestCase
             '2021-02-05T17:36:46',
             'TLE011122SC2',
             '$431.03',
-            'Vigente'
+            'Vigente',
+            '200'
         );
 
         $this->assertInstanceOf(JsonSerializable::class, $result);
