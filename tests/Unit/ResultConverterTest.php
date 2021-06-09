@@ -11,9 +11,9 @@ final class ResultConverterTest extends TestCase
 {
     public function testWellKnownConvertHtml(): void
     {
-        // The file _files/result-html.html was obtained directly from SAT at 2021-06-08
+        // The file _files/result.html was obtained directly from SAT at 2021-06-08
 
-        $html = $this->fileContents('result-html.html');
+        $html = $this->fileContents('result.html');
 
         $converter = new ResultConverter();
         $result = $converter->convertHtml($html);

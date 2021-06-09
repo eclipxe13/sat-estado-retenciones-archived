@@ -17,7 +17,7 @@ final class ScraperTest extends TestCase
         $fakeHttpClient = new class() implements HttpClientInterface {
             public function getContents(string $url): string
             {
-                return TestCase::fileContents('result-html.html');
+                return TestCase::fileContents('result.html');
             }
         };
 
