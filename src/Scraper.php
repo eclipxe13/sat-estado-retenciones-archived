@@ -32,8 +32,9 @@ class Scraper
         return $this->resultConverter->convertHtml($html);
     }
 
-    public function obtainMillisecondsParameter(): int
+    public function obtainMillisecondsParameter(float $microtime = null): int
     {
-        return intval(microtime(true) * 1000);
+        $microtime = $microtime ?? microtime(true);
+        return intval($microtime * 1000);
     }
 }
