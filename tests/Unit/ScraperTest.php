@@ -4,12 +4,27 @@ declare(strict_types=1);
 
 namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit;
 
+use PhpCfdi\SatEstadoRetenciones\HttpClientInterface;
+use PhpCfdi\SatEstadoRetenciones\PhpStreamContextHttpClient;
 use PhpCfdi\SatEstadoRetenciones\RetentionQuery;
 use PhpCfdi\SatEstadoRetenciones\Scraper;
 use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
 
 final class ScraperTest extends TestCase
 {
+    public function testPropertyDefaultHttpClientInterface(): void
+    {
+        $scraper = new Scraper();
+        $this->assertInstanceOf(PhpStreamContextHttpClient::class, $scraper->getHttpClient());
+    }
+
+    public function testPropertyHttpClientInterface(): void
+    {
+        $httpClient = $this->createMock(HttpClientInterface::class);
+        $scraper = new Scraper($httpClient);
+        $this->assertSame($httpClient, $scraper->getHttpClient());
+    }
+
     public function testMakeUrlHasValuesOnQueryString(): void
     {
         $query = new RetentionQuery('12345678-1234-1234-1234-123456789012', 'AAA010101AAA', 'XXXX991231XX0');

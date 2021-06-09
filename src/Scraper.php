@@ -8,17 +8,27 @@ class Scraper
 {
     public const SAT_WEBAPP_URL = 'https://prodretencionverificacion.clouda.sat.gob.mx/Home/ConsultaRetencion';
 
+    private HttpClientInterface $httpClient;
+
     private ResultConverter $resultConverter;
 
-    public function __construct()
+    public function __construct(HttpClientInterface $httpClient = null)
     {
+        $this->httpClient = $httpClient ?? new PhpStreamContextHttpClient();
         $this->resultConverter = new ResultConverter();
     }
+
+    public function getHttpClient(): HttpClientInterface
+    {
+        return $this->httpClient;
+    }
+
+
 
     public function obtainStatus(RetentionQuery $query): RetentionResult
     {
         $url = $this->makeUrl($query);
-        $html = file_get_contents($url);
+        $html = $this->httpClient->getContents($url);
         return $this->resultConverter->convertHtml($html);
     }
 
