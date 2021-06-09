@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace PhpCfdi\SatEstadoRetenciones;
 
+use Symfony\Component\DomCrawler\Crawler;
+
 class Scraper
 {
     public const SAT_WEBAPP_URL = 'https://prodretencionverificacion.clouda.sat.gob.mx/Home/ConsultaRetencion';
@@ -23,11 +25,28 @@ class Scraper
         return $this->httpClient;
     }
 
+    /**
+     * Consumes the web page to obtain the information about a document CFDI Retentions
+     *
+     * @param RetentionQuery $query
+     * @return RetentionResult
+     * @throws Exceptions\RetentionNotFoundException when unable retention document was not found
+     * @throws Exceptions\HttpClientException when unable to retrieve contents
+     */
     public function obtainStatus(RetentionQuery $query): RetentionResult
     {
         $url = $this->makeUrl($query);
         $html = $this->httpClient->getContents($url);
-        return $this->resultConverter->convertHtml($html);
+        $crawler = new Crawler($html, $url);
+        if ($this->responseIsNotFound($crawler)) {
+            throw new Exceptions\RetentionNotFoundException($query);
+        }
+        return $this->resultConverter->convertCrawler($crawler);
+    }
+
+    public function responseIsNotFound(Crawler $crawler): bool
+    {
+        return ($crawler->filter('.noresultados')->count() > 0);
     }
 
     public function makeUrl(RetentionQuery $query): string

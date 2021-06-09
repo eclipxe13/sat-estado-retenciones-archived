@@ -11,6 +11,11 @@ class ResultConverter
     public function convertHtml(string $html): RetentionResult
     {
         $crawler = new Crawler($html);
+        return $this->convertCrawler($crawler);
+    }
+
+    public function convertCrawler(Crawler $crawler): RetentionResult
+    {
         $labels = $crawler->filter('#tbl_resultado th')->each(
             function (Crawler $th): string {
                 return $th->text();
