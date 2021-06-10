@@ -29,7 +29,7 @@ final class RetentionResultTest extends TestCase
         );
 
         $this->assertInstanceOf(JsonSerializable::class, $result);
-        $this->assertJsonStringEqualsJsonFile($this->filePath('result.json'), json_encode($result));
+        $this->assertJsonStringEqualsJsonFile($this->filePath('result.json'), json_encode($result) ?: '');
     }
 
     /** @return array<string, mixed[]> */

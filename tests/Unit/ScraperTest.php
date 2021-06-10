@@ -95,7 +95,7 @@ final class ScraperTest extends TestCase
         $query = new RetentionQuery('12345678-1234-1234-1234-123456789012', 'AAA010101AAA', 'XXXX991231XX0');
         $scraper = new Scraper();
         $url = $scraper->makeUrl($query);
-        $queryString = parse_url($url, PHP_URL_QUERY);
+        $queryString = (string) parse_url($url, PHP_URL_QUERY);
         parse_str($queryString, $queryValues);
 
         $expectedValues = array_filter([

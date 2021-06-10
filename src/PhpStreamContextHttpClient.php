@@ -13,7 +13,7 @@ class PhpStreamContextHttpClient implements HttpClientInterface
     {
         $previousErrorReporting = error_reporting(-1);
         try {
-            $contents = file_get_contents($url);
+            $contents = file_get_contents($url) ?: '';
         } catch (Throwable $exception) {
             $status = $this->obtainStatusFromResponseHeader($http_response_header[0] ?? '');
             throw new HttpClientException($url, $status, $contents ?? '', $exception);

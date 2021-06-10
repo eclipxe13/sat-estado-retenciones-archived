@@ -27,8 +27,8 @@ class ResultConverter
             }
         );
 
-        $dataValues = array_combine($labels, $values);
-        $dataValues['EFOS'] = $crawler->filter('#efosEstatus')->attr('value');
+        $dataValues = array_combine($labels, $values) ?: [];
+        $dataValues['EFOS'] = (string) $crawler->filter('#efosEstatus')->attr('value');
 
         return new RetentionResult(
             $dataValues['RFC del Emisor'],
