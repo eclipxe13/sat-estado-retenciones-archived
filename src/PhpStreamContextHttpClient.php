@@ -30,5 +30,4 @@ class PhpStreamContextHttpClient implements HttpClientInterface
         }
         return 500;
     }
-
 }

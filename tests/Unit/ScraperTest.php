@@ -102,7 +102,7 @@ final class ScraperTest extends TestCase
             'folio' => '12345678-1234-1234-1234-123456789012',
             'rfcEmisor' => 'AAA010101AAA',
             'rfcReceptor' => 'XXXX991231XX0',
-            '_' => $queryValues['_'] ?? null
+            '_' => $queryValues['_'] ?? null,
         ]);
 
         $this->assertSame($expectedValues, $queryValues);
