@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit;
 
+use PhpCfdi\SatEstadoRetenciones\Exceptions\HttpClientException;
 use PhpCfdi\SatEstadoRetenciones\Exceptions\RetentionNotFoundException;
 use PhpCfdi\SatEstadoRetenciones\HttpClientInterface;
 use PhpCfdi\SatEstadoRetenciones\PhpStreamContextHttpClient;
@@ -52,6 +53,27 @@ final class ScraperTest extends TestCase
         $scraper = new Scraper($fakeHttpClient);
 
         $this->expectException(RetentionNotFoundException::class);
+        $scraper->obtainStatus($query);
+    }
+
+    public function testObtainStatusUsingFakeHttpClientError(): void
+    {
+        $fakeHttpClient = new class() implements HttpClientInterface {
+            public function getContents(string $url): string
+            {
+                throw new HttpClientException($url, 404, '');
+            }
+        };
+
+        $query = new RetentionQuery(
+            '48C4CE37-E218-4AAE-97BE-20634A36C628', // UUID
+            'DCM991109KR2', // RFC Emisor
+            'SAZD861013FU2', // RFC Receptor
+        );
+
+        $scraper = new Scraper($fakeHttpClient);
+
+        $this->expectException(HttpClientException::class);
         $scraper->obtainStatus($query);
     }
 
