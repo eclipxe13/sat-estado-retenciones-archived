@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PhpCfdi\SatEstadoRetenciones;
 
 use JsonSerializable;
+use PhpCfdi\SatEstadoRetenciones\ValueObjects\Amount;
 use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusDocument;
 use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusEfos;
 
@@ -30,6 +31,8 @@ class Result implements JsonSerializable
 
     private string $total;
 
+    private Amount $totalAmount;
+
     private string $state;
 
     private string $efos;
@@ -51,6 +54,7 @@ class Result implements JsonSerializable
     ) {
         $this->statusDocument = $this->makeStatusDocument($state);
         $this->statusEfos = $this->makeStatusEfos($efos);
+        $this->totalAmount = Amount::fromString($total);
         $this->issuerRfc = $issuerRfc;
         $this->issuerName = $issuerName;
         $this->receiverRfc = $receiverRfc;
@@ -139,6 +143,11 @@ class Result implements JsonSerializable
     public function getTotal(): string
     {
         return $this->total;
+    }
+
+    public function getTotalAmount(): Amount
+    {
+        return $this->totalAmount;
     }
 
     public function getState(): string

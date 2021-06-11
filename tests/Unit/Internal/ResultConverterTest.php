@@ -26,6 +26,7 @@ final class ResultConverterTest extends TestCase
         $this->assertSame('2021-02-05T17:36:46', $result->getCertification());
         $this->assertSame('TLE011122SC2', $result->getPacRfc());
         $this->assertSame('$431.03', $result->getTotal());
+        $this->assertEqualsWithDelta(431.03, $result->getTotalAmount()->getValue(), 0.001);
         $this->assertSame('Vigente', $result->getState());
         $this->assertSame('200', $result->getEfos());
     }
