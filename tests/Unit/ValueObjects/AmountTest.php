@@ -12,7 +12,7 @@ final class AmountTest extends TestCase
     public function testRegularValue(): void
     {
         $expression = ' $ 1,234.56 ';
-        $amount = Amount::fromString($expression);
+        $amount = Amount::newFromString($expression);
 
         $this->assertEqualsWithDelta(1_234.56, $amount->getValue(), 0.001);
         $this->assertSame('1,234.56', $amount->format());

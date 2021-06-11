@@ -15,7 +15,7 @@ final class Amount implements JsonSerializable
         $this->value = $value;
     }
 
-    public static function fromString(string $expression): self
+    public static function newFromString(string $expression): self
     {
         return new self(floatval(preg_replace('/[^\d.]/', '', $expression)));
     }
