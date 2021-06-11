@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit;
+namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit\Internal;
 
-use PhpCfdi\SatEstadoRetenciones\ResultConverter;
+use PhpCfdi\SatEstadoRetenciones\Internal\ResultConverter;
 use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
 
 final class ResultConverterTest extends TestCase

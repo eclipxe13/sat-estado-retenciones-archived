@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PhpCfdi\SatEstadoRetenciones;
 
+use PhpCfdi\SatEstadoRetenciones\Internal\ResultConverter;
 use Symfony\Component\DomCrawler\Crawler;
 
 class Scraper

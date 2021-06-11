@@ -2,10 +2,13 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\SatEstadoRetenciones;
+namespace PhpCfdi\SatEstadoRetenciones\Internal;
 
+use PhpCfdi\SatEstadoRetenciones\RetentionResult;
+use PhpCfdi\SatEstadoRetenciones\StatusDocument;
 use Symfony\Component\DomCrawler\Crawler;
 
+/** @internal */
 class ResultConverter
 {
     public function convertHtml(string $html): RetentionResult
