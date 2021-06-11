@@ -6,9 +6,9 @@ namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit;
 
 use JsonSerializable;
 use PhpCfdi\SatEstadoRetenciones\Result;
-use PhpCfdi\SatEstadoRetenciones\StatusDocument;
-use PhpCfdi\SatEstadoRetenciones\StatusEfos;
 use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
+use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusDocument;
+use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusEfos;
 
 final class RetentionResultTest extends TestCase
 {
@@ -45,7 +45,7 @@ final class RetentionResultTest extends TestCase
 
     /**
      * @param string $input
-     * @param StatusDocument $expected
+     * @param \PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusDocument $expected
      * @dataProvider providerStatusDocument
      */
     public function testStatusDocument(string $input, StatusDocument $expected): void

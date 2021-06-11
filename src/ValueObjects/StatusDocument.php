@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\SatEstadoRetenciones;
+namespace PhpCfdi\SatEstadoRetenciones\ValueObjects;
 
 use Eclipxe\Enum\Enum;
 use JsonSerializable;
 
 /**
- * @method static self included()
- * @method static self excluded()
+ * @method static self active()
+ * @method static self cancelled()
  * @method static self unknown()
  *
- * @method bool isIncluded()
- * @method bool isExcluded()
+ * @method bool isActive()
+ * @method bool isCancelled()
  * @method bool isUnknown()
  */
-final class StatusEfos extends Enum implements JsonSerializable
+class StatusDocument extends Enum implements JsonSerializable
 {
     public function jsonSerialize(): string
     {

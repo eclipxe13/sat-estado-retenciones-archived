@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace PhpCfdi\SatEstadoRetenciones\Internal;
 
 use PhpCfdi\SatEstadoRetenciones\Result;
-use PhpCfdi\SatEstadoRetenciones\StatusDocument;
+use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusDocument;
 use Symfony\Component\DomCrawler\Crawler;
 
 /** @internal */

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace PhpCfdi\SatEstadoRetenciones;
 
 use JsonSerializable;
+use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusDocument;
+use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusEfos;
 
 class Result implements JsonSerializable
 {
