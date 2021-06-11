@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace PhpCfdi\SatEstadoRetenciones\Internal;
 
-use PhpCfdi\SatEstadoRetenciones\RetentionResult;
+use PhpCfdi\SatEstadoRetenciones\Result;
 use PhpCfdi\SatEstadoRetenciones\StatusDocument;
 use Symfony\Component\DomCrawler\Crawler;
 
 /** @internal */
 class ResultConverter
 {
-    public function convertHtml(string $html): RetentionResult
+    public function convertHtml(string $html): Result
     {
         $crawler = new Crawler($html);
         return $this->convertCrawler($crawler);
     }
 
-    public function convertCrawler(Crawler $crawler): RetentionResult
+    public function convertCrawler(Crawler $crawler): Result
     {
         $labels = $crawler->filter('#tbl_resultado th')->each(
             function (Crawler $th): string {
@@ -33,7 +33,7 @@ class ResultConverter
         $dataValues = array_combine($labels, $values) ?: [];
         $dataValues['EFOS'] = (string) $crawler->filter('#efosEstatus')->attr('value');
 
-        return new RetentionResult(
+        return new Result(
             $dataValues['RFC del Emisor'],
             $dataValues['Nombre o Razón Social del Emisor'],
             $dataValues['RFC del Receptor'],

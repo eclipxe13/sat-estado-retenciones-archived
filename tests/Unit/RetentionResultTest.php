@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit;
 
 use JsonSerializable;
-use PhpCfdi\SatEstadoRetenciones\RetentionResult;
+use PhpCfdi\SatEstadoRetenciones\Result;
 use PhpCfdi\SatEstadoRetenciones\StatusDocument;
 use PhpCfdi\SatEstadoRetenciones\StatusEfos;
 use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
@@ -14,7 +14,7 @@ final class RetentionResultTest extends TestCase
 {
     public function testJsonSerialize(): void
     {
-        $result = new RetentionResult(
+        $result = new Result(
             'DCM991109KR2',
             'DEREMATE.COM DE MEXICO S DE RL DE CV',
             'SAZD861013FU2',
@@ -50,7 +50,7 @@ final class RetentionResultTest extends TestCase
      */
     public function testStatusDocument(string $input, StatusDocument $expected): void
     {
-        $result = new RetentionResult(
+        $result = new Result(
             'DCM991109KR2',
             'DEREMATE.COM DE MEXICO S DE RL DE CV',
             'SAZD861013FU2',
@@ -85,7 +85,7 @@ final class RetentionResultTest extends TestCase
      */
     public function testStatusEfos(string $input, StatusEfos $expected): void
     {
-        $result = new RetentionResult(
+        $result = new Result(
             'DCM991109KR2',
             'DEREMATE.COM DE MEXICO S DE RL DE CV',
             'SAZD861013FU2',

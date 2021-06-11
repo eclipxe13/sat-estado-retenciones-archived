@@ -30,11 +30,11 @@ class Scraper
      * Consumes the web page to obtain the information about a document CFDI Retentions
      *
      * @param Parameters $parameters
-     * @return RetentionResult
+     * @return Result
      * @throws Exceptions\RetentionNotFoundException when unable retention document was not found
      * @throws Exceptions\HttpClientException when unable to retrieve contents
      */
-    public function obtainStatus(Parameters $parameters): RetentionResult
+    public function obtainStatus(Parameters $parameters): Result
     {
         $url = $this->makeUrl($parameters);
         $html = $this->httpClient->getContents($url);

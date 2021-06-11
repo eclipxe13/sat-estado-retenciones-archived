@@ -6,7 +6,7 @@ namespace PhpCfdi\SatEstadoRetenciones;
 
 use JsonSerializable;
 
-class RetentionResult implements JsonSerializable
+class Result implements JsonSerializable
 {
     private StatusDocument $statusDocument;
 
