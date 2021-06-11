@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit;
+namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit\ValueObjects;
 
 use JsonSerializable;
 use PhpCfdi\SatEstadoRetenciones\Result;
@@ -10,7 +10,7 @@ use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
 use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusDocument;
 use PhpCfdi\SatEstadoRetenciones\ValueObjects\StatusEfos;
 
-final class RetentionResultTest extends TestCase
+final class ResultTest extends TestCase
 {
     public function testJsonSerialize(): void
     {
