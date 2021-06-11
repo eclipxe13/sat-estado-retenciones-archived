@@ -29,18 +29,18 @@ class Scraper
     /**
      * Consumes the web page to obtain the information about a document CFDI Retentions
      *
-     * @param RetentionQuery $query
+     * @param Parameters $parameters
      * @return RetentionResult
      * @throws Exceptions\RetentionNotFoundException when unable retention document was not found
      * @throws Exceptions\HttpClientException when unable to retrieve contents
      */
-    public function obtainStatus(RetentionQuery $query): RetentionResult
+    public function obtainStatus(Parameters $parameters): RetentionResult
     {
-        $url = $this->makeUrl($query);
+        $url = $this->makeUrl($parameters);
         $html = $this->httpClient->getContents($url);
         $crawler = new Crawler($html, $url);
         if ($this->responseIsNotFound($crawler)) {
-            throw new Exceptions\RetentionNotFoundException($query);
+            throw new Exceptions\RetentionNotFoundException($parameters);
         }
         return $this->resultConverter->convertCrawler($crawler);
     }
@@ -50,12 +50,12 @@ class Scraper
         return ($crawler->filter('.noresultados')->count() > 0);
     }
 
-    public function makeUrl(RetentionQuery $query): string
+    public function makeUrl(Parameters $parameters): string
     {
         return self::SAT_WEBAPP_URL . '?' . http_build_query([
-            'folio' => $query->getUuid(),
-            'rfcEmisor' => $query->getIssuerRfc(),
-            'rfcReceptor' => $query->getReceiverRfc(),
+            'folio' => $parameters->getUuid(),
+            'rfcEmisor' => $parameters->getIssuerRfc(),
+            'rfcReceptor' => $parameters->getReceiverRfc(),
             '_' => $this->obtainMillisecondsParameter(),
         ]);
     }

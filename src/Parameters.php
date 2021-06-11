@@ -6,7 +6,7 @@ namespace PhpCfdi\SatEstadoRetenciones;
 
 use JsonSerializable;
 
-class RetentionQuery implements JsonSerializable
+class Parameters implements JsonSerializable
 {
     private string $uuid;
 

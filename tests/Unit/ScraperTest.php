@@ -7,8 +7,8 @@ namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit;
 use PhpCfdi\SatEstadoRetenciones\Exceptions\HttpClientException;
 use PhpCfdi\SatEstadoRetenciones\Exceptions\RetentionNotFoundException;
 use PhpCfdi\SatEstadoRetenciones\HttpClientInterface;
+use PhpCfdi\SatEstadoRetenciones\Parameters;
 use PhpCfdi\SatEstadoRetenciones\PhpStreamContextHttpClient;
-use PhpCfdi\SatEstadoRetenciones\RetentionQuery;
 use PhpCfdi\SatEstadoRetenciones\Scraper;
 use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
 
@@ -23,14 +23,14 @@ final class ScraperTest extends TestCase
             }
         };
 
-        $query = new RetentionQuery(
+        $parameters = new Parameters(
             '48C4CE37-E218-4AAE-97BE-20634A36C628', // UUID
             'DCM991109KR2', // RFC Emisor
             'SAZD861013FU2', // RFC Receptor
         );
 
         $scraper = new Scraper($fakeHttpClient);
-        $result = $scraper->obtainStatus($query);
+        $result = $scraper->obtainStatus($parameters);
 
         $this->assertTrue($result->getStatusDocument()->isActive());
     }
@@ -44,7 +44,7 @@ final class ScraperTest extends TestCase
             }
         };
 
-        $query = new RetentionQuery(
+        $parameters = new Parameters(
             '48C4CE37-E218-4AAE-97BE-20634A36C628', // UUID
             'DCM991109KR2', // RFC Emisor
             'SAZD861013FU2', // RFC Receptor
@@ -53,7 +53,7 @@ final class ScraperTest extends TestCase
         $scraper = new Scraper($fakeHttpClient);
 
         $this->expectException(RetentionNotFoundException::class);
-        $scraper->obtainStatus($query);
+        $scraper->obtainStatus($parameters);
     }
 
     public function testObtainStatusUsingFakeHttpClientError(): void
@@ -65,7 +65,7 @@ final class ScraperTest extends TestCase
             }
         };
 
-        $query = new RetentionQuery(
+        $parameters = new Parameters(
             '48C4CE37-E218-4AAE-97BE-20634A36C628', // UUID
             'DCM991109KR2', // RFC Emisor
             'SAZD861013FU2', // RFC Receptor
@@ -74,7 +74,7 @@ final class ScraperTest extends TestCase
         $scraper = new Scraper($fakeHttpClient);
 
         $this->expectException(HttpClientException::class);
-        $scraper->obtainStatus($query);
+        $scraper->obtainStatus($parameters);
     }
 
     public function testPropertyDefaultHttpClientInterface(): void
@@ -92,9 +92,9 @@ final class ScraperTest extends TestCase
 
     public function testMakeUrlHasValuesOnQueryString(): void
     {
-        $query = new RetentionQuery('12345678-1234-1234-1234-123456789012', 'AAA010101AAA', 'XXXX991231XX0');
+        $parameters = new Parameters('12345678-1234-1234-1234-123456789012', 'AAA010101AAA', 'XXXX991231XX0');
         $scraper = new Scraper();
-        $url = $scraper->makeUrl($query);
+        $url = $scraper->makeUrl($parameters);
         $queryString = (string) parse_url($url, PHP_URL_QUERY);
         parse_str($queryString, $queryValues);
 

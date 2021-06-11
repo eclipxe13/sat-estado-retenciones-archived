@@ -4,28 +4,28 @@ declare(strict_types=1);
 
 namespace PhpCfdi\SatEstadoRetenciones\Exceptions;
 
-use PhpCfdi\SatEstadoRetenciones\RetentionQuery;
+use PhpCfdi\SatEstadoRetenciones\Parameters;
 use RuntimeException;
 use Throwable;
 
 final class RetentionNotFoundException extends RuntimeException implements SatEstadoRetencionesException
 {
-    private RetentionQuery $query;
+    private Parameters $parameters;
 
-    public function __construct(RetentionQuery $query, Throwable $previous = null)
+    public function __construct(Parameters $parameters, Throwable $previous = null)
     {
         $message = sprintf(
             'CFDI Retention %s (issuer: %s, receiver: %s) was not found',
-            $query->getUuid(),
-            $query->getIssuerRfc(),
-            $query->getReceiverRfc() ?: '<empty>',
+            $parameters->getUuid(),
+            $parameters->getIssuerRfc(),
+            $parameters->getReceiverRfc() ?: '<empty>',
         );
         parent::__construct($message, 0, $previous);
-        $this->query = $query;
+        $this->parameters = $parameters;
     }
 
-    public function getQuery(): RetentionQuery
+    public function getParameters(): Parameters
     {
-        return $this->query;
+        return $this->parameters;
     }
 }
