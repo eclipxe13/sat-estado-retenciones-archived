@@ -1,7 +1,7 @@
 {
     "name": "phpcfdi/sat-estado-retenciones",
     "description": "Consulta el estado de un CFDI de Retenciones haciendo scrap del sitio del SAT",
-    "keywords": [],
+    "keywords": ["sat", "cfdi", "retenciones", "mexico"],
     "homepage": "https://github.com/phpcfdi/sat-estado-retenciones",
     "license": "MIT",
     "authors": [
