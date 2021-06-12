@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PhpCfdi\SatEstadoRetenciones;
 
 use DOMDocument;
+use PhpCfdi\SatEstadoRetenciones\Contracts\ScraperInterface;
 use PhpCfdi\SatEstadoRetenciones\Internal\RetentionReader;
 
 final class Service

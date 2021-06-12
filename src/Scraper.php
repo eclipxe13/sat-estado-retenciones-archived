@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace PhpCfdi\SatEstadoRetenciones;
 
+use PhpCfdi\SatEstadoRetenciones\Contracts\HttpClientInterface;
+use PhpCfdi\SatEstadoRetenciones\Contracts\ScraperInterface;
 use PhpCfdi\SatEstadoRetenciones\Internal\ResultConverter;
 use Symfony\Component\DomCrawler\Crawler;
 

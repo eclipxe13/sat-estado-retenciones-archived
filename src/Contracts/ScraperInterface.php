@@ -2,7 +2,11 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\SatEstadoRetenciones;
+namespace PhpCfdi\SatEstadoRetenciones\Contracts;
+
+use PhpCfdi\SatEstadoRetenciones\Exceptions;
+use PhpCfdi\SatEstadoRetenciones\Parameters;
+use PhpCfdi\SatEstadoRetenciones\Result;
 
 interface ScraperInterface
 {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PhpCfdi\SatEstadoRetenciones;
 
+use PhpCfdi\SatEstadoRetenciones\Contracts\HttpClientInterface;
 use PhpCfdi\SatEstadoRetenciones\Exceptions\HttpClientException;
 use Throwable;
 

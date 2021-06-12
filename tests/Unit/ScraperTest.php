@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit;
 
+use PhpCfdi\SatEstadoRetenciones\Contracts\HttpClientInterface;
 use PhpCfdi\SatEstadoRetenciones\Exceptions\HttpClientException;
 use PhpCfdi\SatEstadoRetenciones\Exceptions\RetentionNotFoundException;
-use PhpCfdi\SatEstadoRetenciones\HttpClientInterface;
 use PhpCfdi\SatEstadoRetenciones\Parameters;
 use PhpCfdi\SatEstadoRetenciones\PhpStreamContextHttpClient;
 use PhpCfdi\SatEstadoRetenciones\Scraper;

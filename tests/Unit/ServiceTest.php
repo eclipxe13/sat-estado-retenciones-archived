@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit;
 
 use DOMDocument;
+use PhpCfdi\SatEstadoRetenciones\Contracts\ScraperInterface;
 use PhpCfdi\SatEstadoRetenciones\Exceptions\RetentionNotFoundException;
 use PhpCfdi\SatEstadoRetenciones\Internal\ResultConverter;
 use PhpCfdi\SatEstadoRetenciones\Parameters;
 use PhpCfdi\SatEstadoRetenciones\Scraper;
-use PhpCfdi\SatEstadoRetenciones\ScraperInterface;
 use PhpCfdi\SatEstadoRetenciones\Service;
 use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -34,7 +34,7 @@ final class ServiceTest extends TestCase
         $parameters = new Parameters('12345678-1234-1234-1234-123456789012', 'AAA010101AAA', 'XXXX991231XX0');
         $result = (new ResultConverter())->createResultFromValues([]);
 
-        /** @var ScraperInterface&MockObject $scraper */
+        /** @var \PhpCfdi\SatEstadoRetenciones\Contracts\ScraperInterface&MockObject $scraper */
         $scraper = $this->createMock(ScraperInterface::class);
         $scraper->expects($this->once())->method('obtainStatus')->willReturn($result);
 
