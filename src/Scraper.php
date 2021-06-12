@@ -13,12 +13,9 @@ final class Scraper implements ScraperInterface
 
     private HttpClientInterface $httpClient;
 
-    private ResultConverter $resultConverter;
-
     public function __construct(HttpClientInterface $httpClient = null)
     {
         $this->httpClient = $httpClient ?? new PhpStreamContextHttpClient();
-        $this->resultConverter = new ResultConverter();
     }
 
     public function getHttpClient(): HttpClientInterface
@@ -34,7 +31,7 @@ final class Scraper implements ScraperInterface
         if ($this->responseIsNotFound($crawler)) {
             throw new Exceptions\RetentionNotFoundException($parameters);
         }
-        return $this->resultConverter->convertCrawler($crawler);
+        return (new ResultConverter())->convertCrawler($crawler);
     }
 
     public function responseIsNotFound(Crawler $crawler): bool
