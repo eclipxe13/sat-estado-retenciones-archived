@@ -14,7 +14,18 @@
 
 ## Acerca de phpcfdi/sat-estado-retenciones
 
-*write here the reason to exists of this library*
+El Servicio de Administración Tributaria en México (SAT) expone algunos servicios para la comprobación fiscal.
+
+Para el caso de *CFDI regulares* (CFDI de ingresos, egresos, traslados y nómina) ofrece un web service de tipo
+SOAP para poder conocer el estado (vigente o cancelado) de un CFDI.
+
+Para el caso de *CFDI de Retenciones e Información de Pagos (CFDI de retenciones) no ofrece un web service.
+El SAT solo permite consultar su estado a través de una página de internet ubicada en <https://prodretencionverificacion.clouda.sat.gob.mx/>
+y aparentemente protegida por un *captcha*.
+
+Esta librería permite aprovechar que la herramienta del SAT tiene una incorrecta implementación del *captcha*
+y consulta no hay necesidad de resolverlo. Además, convierte la respuesta de la página de internet a propiedades
+de un objeto.
 
 ## Instalación
 
@@ -28,8 +39,36 @@ composer require phpcfdi/sat-estado-retenciones
 
 ```php
 <?php
-// write here an quick example
+
+use PhpCfdi\SatEstadoRetenciones\Exceptions\HttpClientException;
+use PhpCfdi\SatEstadoRetenciones\Exceptions\RetentionNotFoundException;
+use PhpCfdi\SatEstadoRetenciones\Service;
+
+$contents = file_get_contents('archivo-de-retenciones.xml');
+
+$service = new Service();
+$parameters = $service->makeParametersFromXml($contents);
+
+try {
+    $result = $service->queryOrNull($parameters);
+} catch (RetentionNotFoundException $exception) {
+    echo "El CFDI de retenciones {$exception->getParameters()->getUuid()} no fue encontrado.\n";
+    return;
+} catch (HttpClientException $exception) {
+    echo "No se pudo conectar al servicio en la URL {$exception->getUrl()}.\n";
+    return;
+}
+
+if ($result->getStatusDocument()->isActive()) {
+    echo "El CFDI de retenciones {$result->getUUID()} de {$result->getReceiverName()} se encuentra ACTIVO.\n";
+}
 ```
+
+## Explicación de objetos
+
+TODO: Explicar Servicio, Scraper, Parameters, Result y HttpClientInterface
+
+## Explicación de exceciones
 
 ## Soporte
 
