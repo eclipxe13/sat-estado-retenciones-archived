@@ -33,18 +33,27 @@ class ResultConverter
         $dataValues = array_combine($labels, $values) ?: [];
         $dataValues['EFOS'] = (string) $crawler->filter('#efosEstatus')->attr('value');
 
+        return $this->createResultFromValues($dataValues);
+    }
+
+    /**
+     * @param array<string, string> $values
+     * @return Result
+     */
+    public function createResultFromValues(array $values): Result
+    {
         return new Result(
-            $dataValues['RFC del Emisor'],
-            $dataValues['Nombre o Razón Social del Emisor'],
-            $dataValues['RFC del Receptor'],
-            $dataValues['Nombre o Razón Social del Receptor'],
-            $dataValues['Folio Fiscal'],
-            $dataValues['Fecha de Expedición'],
-            $dataValues['Fecha Certificación SAT'],
-            $dataValues['PAC que Certificó'],
-            $dataValues['Total del CFDI Retención'],
-            $dataValues['Estado CFDI Retención'],
-            $dataValues['EFOS'],
+            $values['RFC del Emisor'] ?? '',
+            $values['Nombre o Razón Social del Emisor'] ?? '',
+            $values['RFC del Receptor'] ?? '',
+            $values['Nombre o Razón Social del Receptor'] ?? '',
+            $values['Folio Fiscal'] ?? '',
+            $values['Fecha de Expedición'] ?? '',
+            $values['Fecha Certificación SAT'] ?? '',
+            $values['PAC que Certificó'] ?? '',
+            $values['Total del CFDI Retención'] ?? '',
+            $values['Estado CFDI Retención'] ?? '',
+            $values['EFOS'] ?? '',
         );
     }
 
