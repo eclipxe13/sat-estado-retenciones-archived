@@ -9,11 +9,16 @@ use PhpCfdi\SatEstadoRetenciones\Internal\RetentionReader;
 
 final class Service
 {
-    private Scraper $scraper;
+    private ScraperInterface $scraper;
 
-    public function __construct(Scraper $scraper = null)
+    public function __construct(ScraperInterface $scraper = null)
     {
         $this->scraper = $scraper ?? new Scraper();
+    }
+
+    public function getScraper(): ScraperInterface
+    {
+        return $this->scraper;
     }
 
     /**
