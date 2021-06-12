@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace PhpCfdi\SatEstadoRetenciones\Tests\Features;
 
 use PhpCfdi\SatEstadoRetenciones\Exceptions\HttpClientException;
-use PhpCfdi\SatEstadoRetenciones\PhpStreamContextHttpClient;
+use PhpCfdi\SatEstadoRetenciones\HttpClients\PhpStreamContextHttpClient;
 use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
 
 final class DefaultHttpClientExceptionsTest extends TestCase

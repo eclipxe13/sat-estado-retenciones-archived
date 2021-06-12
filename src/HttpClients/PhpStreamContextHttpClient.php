@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\SatEstadoRetenciones;
+namespace PhpCfdi\SatEstadoRetenciones\HttpClients;
 
 use PhpCfdi\SatEstadoRetenciones\Contracts\HttpClientInterface;
 use PhpCfdi\SatEstadoRetenciones\Exceptions\HttpClientException;
 use Throwable;
 
-class PhpStreamContextHttpClient implements HttpClientInterface
+final class PhpStreamContextHttpClient implements HttpClientInterface
 {
     public function getContents(string $url): string
     {

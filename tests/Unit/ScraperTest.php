@@ -7,8 +7,8 @@ namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit;
 use PhpCfdi\SatEstadoRetenciones\Contracts\HttpClientInterface;
 use PhpCfdi\SatEstadoRetenciones\Exceptions\HttpClientException;
 use PhpCfdi\SatEstadoRetenciones\Exceptions\RetentionNotFoundException;
+use PhpCfdi\SatEstadoRetenciones\HttpClients\PhpStreamContextHttpClient;
 use PhpCfdi\SatEstadoRetenciones\Parameters;
-use PhpCfdi\SatEstadoRetenciones\PhpStreamContextHttpClient;
 use PhpCfdi\SatEstadoRetenciones\Scraper;
 use PhpCfdi\SatEstadoRetenciones\Tests\TestCase;
 
