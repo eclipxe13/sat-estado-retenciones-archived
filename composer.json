@@ -13,6 +13,7 @@
     ],
     "require": {
         "php": ">=7.4",
+        "ext-dom": "*",
         "ext-json": "*",
         "eclipxe/enum": "^0.2.5",
         "symfony/dom-crawler": "^5.3",
