@@ -54,7 +54,7 @@ class Result implements JsonSerializable
     ) {
         $this->statusDocument = $this->makeStatusDocument($state);
         $this->statusEfos = $this->makeStatusEfos($efos);
-        $this->totalAmount = Amount::fromString($total);
+        $this->totalAmount = Amount::newFromString($total);
         $this->issuerRfc = $issuerRfc;
         $this->issuerName = $issuerName;
         $this->receiverRfc = $receiverRfc;
