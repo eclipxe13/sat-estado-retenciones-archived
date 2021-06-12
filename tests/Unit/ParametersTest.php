@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit\ValueObjects;
+namespace PhpCfdi\SatEstadoRetenciones\Tests\Unit;
 
 use JsonSerializable;
 use PhpCfdi\SatEstadoRetenciones\Parameters;
